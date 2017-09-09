@@ -1,0 +1,36 @@
+{% set title_suffix = 'Православље — новине српске патријаршије' %}
+
+{% macro title(value=None) -%}
+    {{ '{}{}'.format('' if value == None else value + ' — ', title_suffix) }}
+{%- endmacro %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet"> 
+  <link rel='stylesheet' href='{{ url_for_static("css/base.css") }}'/>
+  {% block head %}{% endblock %}
+  <title>{% block title %}{{ title_suffix }}{% endblock %}</title>
+</head>
+<body>
+  <div id='content'>
+    <header>
+      <img src='{{ url_for_static("img/banner.png") }}'/>
+    </header>
+
+    <main>
+      <section>
+        {% block main_section %}{% endblock %}
+      </section>
+      <nav>
+        {% for tab in tabs %}
+          <a href=''>{{ tab[1] }}</a>
+        {% endfor %}
+      </nav>
+    </main>
+
+    <footer>
+    </footer>
+  </div>
+</body>
+</html>

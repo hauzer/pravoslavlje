@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'ResavskaBG';
+  src: url('../fonts/ResavskaBG.woff2') format('woff2'),
+        url('../fonts/ResavskaBG.woff') format('woff'),
+        url('../fonts/ResavskaBG.ttf')  format('truetype');
+}
+  
+@font-face {
+  font-family: 'ResavskaBG';
+  src: url('../fonts/ResavskaBG-Bold.woff2') format('woff2'),
+        url('../fonts/ResavskaBG-Bold.woff') format('woff'),
+        url('../fonts/ResavskaBG-Bold.ttf')  format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+  font-family: 'ResavskaBG';
+  src: url('../fonts/ResavskaBG-Italic.woff2') format('woff2'),
+        url('../fonts/ResavskaBG-Italic.woff') format('woff'),
+        url('../fonts/ResavskaBG-Italic.ttf')  format('truetype');
+    font-style: italic;
+}
+  
+@font-face {
+  font-family: 'ResavskaBG';
+  src: url('../fonts/ResavskaBG-BoldItalic.woff2') format('woff2'),
+        url('../fonts/ResavskaBG-BoldItalic.woff') format('woff'),
+        url('../fonts/ResavskaBG-BoldItalic.ttf')  format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+* {
+  margin: 0;
+  padding: 0px;
+}
+
+html {
+  display: flex;
+  justify-content: center;
+  font-family: 'ResavskaBG', Fallback, sans-serif;
+  font-size: 1vw;
+  background-image: url('../img/background.png'), linear-gradient(to bottom, #c5702b, #780d00 10rem, #7a3927);
+}
+
+body {
+  display: flex;
+  width: 55%;
+  min-height: 100vh;
+  font-size: 1.2rem;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  border-radius: 0.1rem;
+  box-shadow: 0 0 0.8rem 0.15rem #0006;
+  background-color: #fcefc5;
+  background-image: url('../img/content-background.png');
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1.3rem;
+  padding: 1.5rem;
+}
+
+main {
+  display: flex;
+  width: 100%;
+}
+
+main > section {
+  flex: 1;
+  margin-right: 2.5rem;
+}
+
+main > nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  border-left: 0.25rem double #9f6627;
+  font-family: 'Lora', serif;
+  font-size: 1.05rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #8a5555;
+  transition: color 0.15s;
+}
+
+a:hover {
+  color: #f27700;
+  transition: color 0.25s;
+}
