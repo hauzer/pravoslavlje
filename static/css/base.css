@@ -1,33 +1,37 @@
 @font-face {
   font-family: 'ResavskaBG';
-  src: url('../fonts/ResavskaBG.woff2') format('woff2'),
-        url('../fonts/ResavskaBG.woff') format('woff'),
-        url('../fonts/ResavskaBG.ttf')  format('truetype');
+  src: url('../fonts/resavskabg.woff2') format('woff2'),
+        url('../fonts/resavskabg.woff') format('woff');
 }
   
 @font-face {
   font-family: 'ResavskaBG';
-  src: url('../fonts/ResavskaBG-Bold.woff2') format('woff2'),
-        url('../fonts/ResavskaBG-Bold.woff') format('woff'),
-        url('../fonts/ResavskaBG-Bold.ttf')  format('truetype');
-    font-weight: bold;
+  src:  url('../fonts/resavskabg-b.woff2') format('woff2'),
+        url('../fonts/resavskabg-b.woff') format('woff');
+  font-weight: bold;
 }
 
 @font-face {
   font-family: 'ResavskaBG';
-  src: url('../fonts/ResavskaBG-Italic.woff2') format('woff2'),
-        url('../fonts/ResavskaBG-Italic.woff') format('woff'),
-        url('../fonts/ResavskaBG-Italic.ttf')  format('truetype');
-    font-style: italic;
+  src:  url('../fonts/resavskabg-i.woff2') format('woff2'),
+        url('../fonts/resavskabg-i.woff') format('woff');
+  font-style: italic;
 }
   
 @font-face {
   font-family: 'ResavskaBG';
-  src: url('../fonts/ResavskaBG-BoldItalic.woff2') format('woff2'),
-        url('../fonts/ResavskaBG-BoldItalic.woff') format('woff'),
-        url('../fonts/ResavskaBG-BoldItalic.ttf')  format('truetype');
-    font-weight: bold;
-    font-style: italic;
+  src:  url('../fonts/resavskabg-bi.woff2') format('woff2'),
+        url('../fonts/resavskabg-bi.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/lora.woff2') format('woff2'),
+       url('../fonts/lora.woff') format('woff');
 }
 
 * {
@@ -72,6 +76,10 @@ header {
   padding: 1.5rem;
 }
 
+header img {
+  width: 100%;
+}
+
 main {
   display: flex;
   width: 100%;
@@ -91,6 +99,10 @@ main > nav {
   font-size: 1.05rem;
 }
 
+main > nav span {
+  color: #4D341C;
+}
+
 footer {
   display: flex;
   justify-content: center;
@@ -104,7 +116,19 @@ a, a:visited {
   transition: color 0.15s;
 }
 
+a:focus {
+  outline: none;
+}
+
 a:hover {
   color: #f27700;
   transition: color 0.25s;
+}
+
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }

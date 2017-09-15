@@ -31,15 +31,15 @@ def url_for_static(filename, *args, **kwargs):
     return url_for('static', *args, filename=filename, **kwargs)
 
 
-tabs = [
-    ('editorial_board', 'Уредништво'),
-    ('new_issue',       'Нови број'),
-    ('archive',         'Архива'),
-    ('subscription',    'Претплата'),
-    ('associates',      'Сарадници'),
-    ('about',           'О новинама'),
-    ('contact',         'Контакт'),
-]
+tabs = {
+    'editorial_board': 'Уредништво',
+    'new_issue':       'Нови број',
+    'archive':         'Архива',
+    'subscription':    'Претплата',
+    'associates':      'Сарадници',
+    'about':           'О новинама',
+    'contact':         'Контакт',
+}
 jinja_exports['tabs'] = tabs
 
 # FIXME: files 404ing in the root static directory
@@ -64,3 +64,38 @@ def remove_db_session(exception=None):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/urednistvo')
+def editorial_board():
+    return render_template('editorial_board.html')
+
+
+@app.route('/novi-broj')
+def new_issue():
+    return render_template('new_issue.html')
+
+
+@app.route('/arhiva')
+def archive():
+    return render_template('archive.html')
+
+
+@app.route('/pretplata')
+def subscription():
+    return render_template('subscription.html')
+
+
+@app.route('/saradnici')
+def associates():
+    return render_template('associates.html')
+
+
+@app.route('/o-novinama')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/kontakt')
+def contact():
+    return render_template('contact.html')

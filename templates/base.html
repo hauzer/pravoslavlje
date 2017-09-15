@@ -1,30 +1,35 @@
-{% set title_suffix = 'Православље — новине српске патријаршије' %}
-
 {% macro title(value=None) -%}
-    {{ '{}{}'.format('' if value == None else value + ' — ', title_suffix) }}
+    {{ '{}{}'.format('' if value == None else value + ' — ', 'Православље – новине српске патријаршије') }}
 {%- endmacro %}
 
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet"> 
+  {# <link rel='shortcut icon' type='image/x-icon' href='{{ url_for_static("img/favicon.ico") }}'/> #}
   <link rel='stylesheet' href='{{ url_for_static("css/base.css") }}'/>
+  <script src='{{ url_for_static("js/base.js") }}'></script>
   {% block head %}{% endblock %}
-  <title>{% block title %}{{ title_suffix }}{% endblock %}</title>
+  <title>{% block title %}{{ title() }}{% endblock %}</title>
 </head>
-<body>
+<body ondragstart="return false;" ondrop="return false;">
   <div id='content'>
     <header>
-      <img src='{{ url_for_static("img/banner.png") }}'/>
+      <a href='{{ url_for("index") }}'>
+        <img src='{{ url_for_static("img/banner.png") }}' class='unselectable'/>
+      </a>
     </header>
 
     <main>
       <section>
         {% block main_section %}{% endblock %}
       </section>
-      <nav>
-        {% for tab in tabs %}
-          <a href=''>{{ tab[1] }}</a>
+      <nav class='unselectable'>
+        {% for tab, tab_name in tabs.items() %}
+          {% if this_tab == tab %}
+            <span>{{ tab_name }}</span>
+          {% else %}
+            <a href='{{ url_for(tab) }}'>{{ tab_name }}</a>
+          {% endif %}
         {% endfor %}
       </nav>
     </main>
