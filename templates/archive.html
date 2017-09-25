@@ -1,5 +1,43 @@
-{% set this_tab = 'archive' %}
-{% extends 'tab_base.html' %}
-{% block main_section %}
+{% set current_tab = 'archive' %}
+{% extends 'tab.html' %}
 
+{% block css %}
+  <link rel='stylesheet' href='{{ url_for_static("css/archive.css") }}'/>
+{% endblock %}
+
+{% block js %}
+  <script src='{{ url_for_static("js/archive.js") }}'></script>
+{% endblock %}
+
+{% block main %}
+  <p class='heads-up flex columns align-center self-align-center'>
+    Архива је у изради. Претходни бројеви ће бити постепено додавани.
+  </p>
+
+  {% for year, months in g.issues %}
+    <div class='year flex columns align-center unselectable'>
+      <span class='rolldown-button'>{{ year }}</span>
+      <div class='decor blocky-green-decor'></div>
+      <div class='months rolldown-container flex columns align-center'>
+        {% for month, issues in months %}
+          <div class='month flex columns align-center'>
+            <span class='rolldown-button'>{{ month }}</span>
+            <div class='decor blocky-green-decor'></div>
+            <div class='issues rolldown-container flex rows align-center'>
+              {% for issue in issues %}
+                <div class='issue flex columns align-center'>
+                  <a class='flex columns align-center'
+                     href='{{ url_for_static("issues/{0}/{1}/{1}.pdf".format(issue.date.year, issue.number)) }}'
+                     target='_blank'>
+                    <span class='flex columns align-center'>{{ issue.number }}</span>
+                    <img src='{{ url_for_static("issues/{}/{}/cover.png".format(year, issue.number)) }}'>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
 {% endblock %}

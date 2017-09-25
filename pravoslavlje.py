@@ -1,9 +1,13 @@
+from itertools import groupby
+from babel.dates import get_month_names
+
 import flask
 from flask import Flask, abort, g, redirect, request, session, url_for
 from flask_session import Session
 from flask_profile import Profiler
 
 import db
+import sqlalchemy as sql
 
 
 def combine_dicts(*dicts):
@@ -12,6 +16,14 @@ def combine_dicts(*dicts):
         if dct:
             keys_values.extend(list(dct.items()))
     return dict(keys_values)
+
+
+def attach_method(obj, attr):
+    def decorator(func):
+        setattr(obj, attr, func)
+        return func
+
+    return decorator
 
 
 jinja_exports = {}
@@ -42,6 +54,7 @@ tabs = {
 }
 jinja_exports['tabs'] = tabs
 
+
 # FIXME: files 404ing in the root static directory
 app = Flask(__name__, static_path='/files')
 app.config.from_object(__name__)
@@ -66,36 +79,58 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/urednistvo')
+@app.route('/уредништво')
 def editorial_board():
     return render_template('editorial_board.html')
 
 
-@app.route('/novi-broj')
+@app.route('/нови-број')
 def new_issue():
     return render_template('new_issue.html')
 
 
-@app.route('/arhiva')
+@app.route('/архива')
 def archive():
+    g.issues = []
+    issues = db.session.query(db.Issue).order_by(sql.desc(db.Issue.date))
+    for year, year_issues in groupby(issues, lambda i: i.date.year):
+        g.issues.append((year, []))
+        for month, month_issues in \
+                groupby(year_issues, lambda i: i.date.month):
+            g.issues[-1][1].append((
+                get_month_names(width='wide', locale='sr')[month],
+                list(month_issues)
+            ))
+
     return render_template('archive.html')
 
 
-@app.route('/pretplata')
+@app.route('/претплата')
 def subscription():
     return render_template('subscription.html')
 
 
-@app.route('/saradnici')
+@app.route('/сарадници')
 def associates():
     return render_template('associates.html')
 
 
-@app.route('/o-novinama')
+@app.route('/о-новинама')
 def about():
     return render_template('about.html')
 
 
-@app.route('/kontakt')
+@app.route('/контакт')
 def contact():
     return render_template('contact.html')
+
+
+@app.route('/број/<number>')
+def issue(number):
+    g.issue = \
+        db.session.query(db.Issue).filter(db.Issue.number == number).first()
+
+    if g.issue:
+        return render_template('issue.html')
+    else:
+        return abort(404)

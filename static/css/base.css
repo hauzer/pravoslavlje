@@ -1,118 +1,125 @@
 @font-face {
-  font-family: 'ResavskaBG';
-  src: url('../fonts/resavskabg.woff2') format('woff2'),
-        url('../fonts/resavskabg.woff') format('woff');
+  font-family: 'Resavska BG';
+  src: url('../fonts/Resavska BG.woff2') format('woff2'),
+        url('../fonts/Resavska BG.woff') format('woff');
 }
   
 @font-face {
-  font-family: 'ResavskaBG';
-  src:  url('../fonts/resavskabg-b.woff2') format('woff2'),
-        url('../fonts/resavskabg-b.woff') format('woff');
+  font-family: 'Resavska BG';
+  src:  url('../fonts/Resavska BG Bold.woff2') format('woff2'),
+        url('../fonts/Resavska BG Bold.woff') format('woff');
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'ResavskaBG';
-  src:  url('../fonts/resavskabg-i.woff2') format('woff2'),
-        url('../fonts/resavskabg-i.woff') format('woff');
+  font-family: 'Resavska BG';
+  src:  url('../fonts/Resavska BG Italic.woff2') format('woff2'),
+        url('../fonts/Resavska BG Italic.woff') format('woff');
   font-style: italic;
 }
   
 @font-face {
-  font-family: 'ResavskaBG';
-  src:  url('../fonts/resavskabg-bi.woff2') format('woff2'),
-        url('../fonts/resavskabg-bi.woff') format('woff');
+  font-family: 'Resavska BG';
+  src:  url('../fonts/Resavska BG Bold Italic.woff2') format('woff2'),
+        url('../fonts/Resavska BG Bold Italic.woff') format('woff');
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'Lora';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/lora.woff2') format('woff2'),
-       url('../fonts/lora.woff') format('woff');
+  font-family: 'PF Agora Slab Pro';
+  src:  url('../fonts/PF Agora Slab Pro.woff2') format('woff2'),
+        url('../fonts/PF Agora Slab Pro.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PF Agora Slab Pro';
+  src:  url('../fonts/PF Agora Slab Pro Bold.woff2') format('woff2'),
+        url('../fonts/PF Agora Slab Pro Bold.woff') format('woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'PF Agora Slab Pro';
+  src:  url('../fonts/PF Agora Slab Pro Italic.woff2') format('woff2'),
+        url('../fonts/PF Agora Slab Pro Italic.woff') format('woff');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PF Agora Slab Pro';
+  src:  url('../fonts/PF Agora Slab Pro Bold Italic.woff2') format('woff2'),
+        url('../fonts/PF Agora Slab Pro Bold Italic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Neoplanta BG';
+  src:  url('../fonts/Neoplanta BG.woff2') format('woff2'),
+        url('../fonts/Neoplanta BG.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Neoplanta BG';
+  src:  url('../fonts/Neoplanta BG Bold.woff2') format('woff2'),
+        url('../fonts/Neoplanta BG Bold.woff') format('woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Neoplanta BG';
+  src:  url('../fonts/Neoplanta BG Italic.woff2') format('woff2'),
+        url('../fonts/Neoplanta BG Italic.woff') format('woff');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Neoplanta BG';
+  src:  url('../fonts/Neoplanta BG Bold Italic.woff2') format('woff2'),
+        url('../fonts/Neoplanta BG Bold Italic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Fedra Sans Pro';
+  src:  url('../fonts/Fedra Sans Pro.woff2') format('woff2'),
+        url('../fonts/Fedra Sans Pro.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fedra Sans Pro';
+  src:  url('../fonts/Fedra Sans Pro Bold.woff2') format('woff2'),
+        url('../fonts/Fedra Sans Pro Bold.woff') format('woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Fedra Sans Pro';
+  src:  url('../fonts/Fedra Sans Pro Italic.woff2') format('woff2'),
+        url('../fonts/Fedra Sans Pro Italic.woff') format('woff');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Fedra Sans Pro';
+  src:  url('../fonts/Fedra Sans Pro Bold Italic.woff2') format('woff2'),
+        url('../fonts/Fedra Sans Pro Bold Italic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
 }
 
 * {
   margin: 0;
-  padding: 0px;
-}
+  padding: 0;
 
-html {
-  display: flex;
-  justify-content: center;
-  font-family: 'ResavskaBG', Fallback, sans-serif;
-  font-size: 1vw;
-  background-image: url('../img/background.png'), linear-gradient(to bottom, #c5702b, #780d00 10rem, #7a3927);
-}
-
-body {
-  display: flex;
-  width: 55%;
-  min-height: 100vh;
-  font-size: 1.2rem;
-}
-
-#content {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  border-radius: 0.1rem;
-  box-shadow: 0 0 0.8rem 0.15rem #0006;
-  background-color: #fcefc5;
-  background-image: url('../img/content-background.png');
-}
-
-header {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-  margin-bottom: 1.3rem;
-  padding: 1.5rem;
-}
-
-header img {
-  width: 100%;
-}
-
-main {
-  display: flex;
-  width: 100%;
-}
-
-main > section {
-  flex: 1;
-  margin-right: 2.5rem;
-}
-
-main > nav {
-  display: flex;
-  flex-direction: column;
-  padding-left: 1rem;
-  border-left: 0.25rem double #9f6627;
-  font-family: 'Lora', serif;
-  font-size: 1.05rem;
-}
-
-main > nav span {
-  color: #4D341C;
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  font-weight: unset;
 }
 
 a, a:visited {
   text-decoration: none;
-  color: #8a5555;
+  color: #000000;
   transition: color 0.15s;
 }
 
@@ -121,14 +128,180 @@ a:focus {
 }
 
 a:hover {
-  color: #f27700;
   transition: color 0.25s;
 }
 
-.unselectable {
-  -moz-user-select: none;
+img {
   -webkit-user-select: none;
-  -o-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.rows {
+  flex-direction: row;
+}
+
+.columns {
+  flex-direction: column;
+}
+
+.wraps {
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.self-align-center {
+  align-self: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.decor {
+  background-size: contain;
+  background-repeat: round;
+}
+
+.grey-decor {
+  background-image: url('../img/grey-decor.png');
+}
+
+.round-green-decor {
+  background-image: url('../img/round-green-decor.png');
+}
+
+.unselectable {
+  -webkit-user-select: none;
+}
+
+html {
+  min-height: 100%;
+  font-size: 16px;
+}
+
+body {
+  width: 65%;
+  min-height: 100%;
+}
+
+@media only screen and (max-width: 470px) {
+  body {
+    width: 80%;
+  }
+}
+
+#content-wrapper {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  min-width: 0;
+}
+
+#content-wrapper > .decor {
+  min-width: 0.7rem;
+  height: calc(100% - 20vh);
+  transition: height 0.5s ease-in-out;
+}
+
+#content {
+  min-width: 0;
+
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+@media only screen and (max-width: 1280px) {
+  #content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+header {
+  margin-top: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+
+header .banner {
+  min-width: 200px;
+  width: 80%;
+
+  margin-bottom: 1.1rem;
+}
+
+header .banner img {
+  width: 100%;
+}
+
+@media only screen and (max-width: 300px) {
+  header > .banner {
+    min-width: 150px;
+    width: 100%;
+  }
+}
+
+nav {
+  width: 100%;
+  min-width: 0;
+
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+
+  background-image: linear-gradient(to right, white, #d5d8ce 20%, #d5d8ce 80%, white);
+
+  font-family: 'PF Agora Slab Pro';
+  font-style: italic;
+  white-space: nowrap;
+}
+
+nav .tab {
+  padding-top: 0.2rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+
+  font-size: 0.95rem;
+}
+
+nav .tab:hover {
+  color: #617e54;
+}
+
+nav .active.tab {
+  background-color: #617e54;
+  color: lightgrey;
+}
+
+header > .decor {
+  height: 0.5rem;
+  width: 60%;
+}
+
+main {
+  width: 100%;
+
+  font-family: 'Resavska BG';
+  font-size: 1.05rem;
+}
+
+footer {
+  height: 20vh;
+
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }

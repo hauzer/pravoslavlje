@@ -1,0 +1,111 @@
+.blocky-green-decor {
+  background-image: url('../img/blocky-green-decor.png');
+}
+
+.rolldown-button {
+  width: 100%;
+
+  transition: color 0.25s;
+  background-color: #617e54;
+
+  font-family: 'PF Agora Slab Pro';
+  font-weight: bold;
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.rolldown-button:hover {
+  color: lightgrey;
+  transition: color 0.15s;
+}
+
+.rolldown-container {
+  overflow: hidden;
+  height: 0;
+}
+
+.displayed > .rolldown-container {
+  height: 100%;
+}
+
+.heads-up {
+  margin-bottom: 1.4rem;
+  padding: 0.75rem;
+
+  border: 0.35rem solid rgba(88, 134, 231, 0.51);
+
+  font-family: 'Fedra Sans Pro';
+  font-style: italic;
+  font-size: 1.05rem;
+
+  text-align: center;
+}
+
+.year > .rolldown-button {
+  padding-top: 0.5rem;
+  font-size: 2rem;
+}
+
+.year > .decor {
+  width: 100%;
+  min-height: 0.75rem;
+}
+
+.months {
+  width: 80%;
+  transition: height 0.35s ease-in-out;
+}
+
+.month {
+  width: 100%;
+}
+
+.month > .rolldown-button {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+
+  font-size: 1rem;
+}
+
+.month > .decor {
+  width: 100%;
+  min-height: 0.25rem;
+}
+
+.issues {
+  transition: height 0.5s ease-in-out;
+}
+
+.issue {
+  border: 1px solid rgba(0, 0, 0, 0.20);
+}
+
+.issue:not(:first-child) {
+  border-left-width: 0;
+}
+
+.issue span {
+  width: 100%;
+
+  transition: color 0.25s;
+  transition: background-color 0.25s;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+
+  font-family: 'Fedra Sans Pro';
+  font-size: 1.1rem;
+}
+
+.issue:hover span {
+  color: #E4E4E4;
+  transition: color 0.15s;
+  background-color: #C6776C;
+  transition: background-color 0.15s;
+}
+
+.issue img {
+  width: 100%;
+  max-height: 30rem;
+}

@@ -1,41 +1,53 @@
-{% macro title(value=None) -%}
+{% macro set_title(value=None) -%}
     {{ '{}{}'.format('' if value == None else value + ' — ', 'Православље – новине српске патријаршије') }}
 {%- endmacro %}
 
 <!DOCTYPE html>
-<html>
+<html class='flex rows justify-center'>
 <head>
+  <meta charset='utf-8'>
   {# <link rel='shortcut icon' type='image/x-icon' href='{{ url_for_static("img/favicon.ico") }}'/> #}
+
   <link rel='stylesheet' href='{{ url_for_static("css/base.css") }}'/>
+  {% block css %}{% endblock %}
+
   <script src='{{ url_for_static("js/base.js") }}'></script>
-  {% block head %}{% endblock %}
-  <title>{% block title %}{{ title() }}{% endblock %}</title>
+  {% block js %}{% endblock %}
+
+  <title>{% block title %}{{ set_title() }}{% endblock %}</title>
 </head>
-<body ondragstart="return false;" ondrop="return false;">
-  <div id='content'>
-    <header>
-      <a href='{{ url_for("index") }}'>
-        <img src='{{ url_for_static("img/banner.png") }}' class='unselectable'/>
-      </a>
-    </header>
+<body class='flex rows justify-center' ondragstart="return false;" ondrop="return false;">
+  <div id='content-wrapper' class='flex rows'>
+    <div class='decor grey-decor self-align-center'></div>
+    <div id='content' class='flex columns align-center'>
+      <header class='flex columns align-center'>
+        <div class='banner'>
+          <a href='{{ url_for("index") }}'>
+            <img src='{{ url_for_static("img/banner.png") }}'/>
+          </a>
+        </div>
 
-    <main>
-      <section>
-        {% block main_section %}{% endblock %}
-      </section>
-      <nav class='unselectable'>
-        {% for tab, tab_name in tabs.items() %}
-          {% if this_tab == tab %}
-            <span>{{ tab_name }}</span>
-          {% else %}
-            <a href='{{ url_for(tab) }}'>{{ tab_name }}</a>
-          {% endif %}
-        {% endfor %}
-      </nav>
-    </main>
+        <nav class='flex rows wraps align-center justify-center unselectable'>
+          {% for tab, tab_label in tabs.items() %}
+            {% if tab == current_tab %}
+              <span class='active tab'>{{ tab_label }}</span>
+            {% else %}
+              <a class='tab' href='{{ url_for(tab) }}'>{{ tab_label }}</a>
+            {% endif %}
+          {% endfor %}
+        </nav>
 
-    <footer>
-    </footer>
+        <div class='decor round-green-decor'></div>
+      </header>
+
+      <main class='flex columns'>
+        {% block main %}{% endblock %}
+      </main>
+
+      <footer>
+      </footer>
+    </div>
+    <div class='decor grey-decor self-align-center'></div>
   </div>
 </body>
 </html>
