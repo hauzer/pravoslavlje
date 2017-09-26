@@ -154,7 +154,8 @@ def issue(number):
 
     if g.issue and newest_issue:
         if g.issue == newest_issue:
-            jinja_vars['current_tab'] = 'new_issue'
-        return render_template('issue.html')
+            current_tab = 'new_issue'
+
+        return render_template('issue.html', current_tab=current_tab)
     else:
         return abort(404)
