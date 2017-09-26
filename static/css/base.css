@@ -163,6 +163,10 @@ img {
   justify-content: center;
 }
 
+.unselectable {
+  -webkit-user-select: none;
+}
+
 .decor {
   background-size: contain;
   background-repeat: round;
@@ -176,8 +180,17 @@ img {
   background-image: url('../img/round-green-decor.png');
 }
 
-.unselectable {
-  -webkit-user-select: none;
+.info-box {
+  margin-bottom: 1.4rem;
+  padding: 0.75rem;
+
+  border: 0.35rem solid rgba(88, 134, 231, 0.51);
+
+  font-family: 'Fedra Sans Pro';
+  font-style: italic;
+  font-size: 1.05rem;
+
+  text-align: center;
 }
 
 html {
@@ -187,6 +200,7 @@ html {
 
 body {
   width: 65%;
+  transition: width 0.3s ease-in-out;
   min-height: 100%;
 }
 

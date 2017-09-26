@@ -10,27 +10,33 @@
 {% endblock %}
 
 {% block main %}
-  <p class='heads-up flex columns align-center self-align-center'>
+  <p class='info-box'>
     Архива је у изради. Претходни бројеви ће бити постепено додавани.
   </p>
 
   {% for year, months in g.issues %}
-    <div class='year flex columns align-center unselectable'>
+    <div class='{% if loop.first %}
+                  displayed
+                {% endif %}
+                year flex columns align-center unselectable'>
       <span class='rolldown-button'>{{ year }}</span>
       <div class='decor blocky-green-decor'></div>
       <div class='months rolldown-container flex columns align-center'>
+        {% set _ = {'first_month': true} %}
         {% for month, issues in months %}
-          <div class='month flex columns align-center'>
+          <div class='{% if _.first_month %}
+                        displayed
+                        {% if _.update({"first_month": false}) %}{% endif %}
+                      {% endif %}
+                      month flex columns align-center'>
             <span class='rolldown-button'>{{ month }}</span>
             <div class='decor blocky-green-decor'></div>
             <div class='issues rolldown-container flex rows align-center'>
               {% for issue in issues %}
-                <div class='issue flex columns align-center'>
-                  <a class='flex columns align-center'
-                     href='{{ url_for_static("issues/{0}/{1}/{1}.pdf".format(issue.date.year, issue.number)) }}'
-                     target='_blank'>
+                <div class='issue'>
+                  <a class='flex columns align-center' href='{{ issue.url }}'>
                     <span class='flex columns align-center'>{{ issue.number }}</span>
-                    <img src='{{ url_for_static("issues/{}/{}/cover.png".format(year, issue.number)) }}'>
+                    <img src='{{ issue.cover_url }}'>
                   </a>
                 </div>
               {% endfor %}
