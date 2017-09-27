@@ -137,6 +137,9 @@ def issue(number):
             .order_by(sql.desc(db.Issue.date)).first()
         if g.issue == newest_issue:
             current_tab = 'new_issue'
+        else:
+            current_tab = None
+
         return render_template('issue.html', current_tab=current_tab)
     else:
         return abort(404)
