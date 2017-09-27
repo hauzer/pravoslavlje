@@ -84,7 +84,6 @@ tabs = {
     'archive':         'Архива',
     'subscription':    'Претплата',
     'about':           'О новинама',
-    # 'contact':         'Контакт',
 }
 jinja_vars['tabs'] = tabs
 
@@ -126,11 +125,6 @@ def subscription():
 @app.route('/о-новинама')
 def about():
     return render_template('about.html')
-
-
-@app.route('/контакт')
-def contact():
-    return render_template('contact.html')
 
 
 @app.route('/број/<number>')
