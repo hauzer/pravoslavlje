@@ -3,7 +3,7 @@ body.zoomed {
 }
 
 .title {
-  font-stretch: 'Neoplanta BG';
+  font-family: 'Neoplanta BG';
   font-size: 1.8rem;
 
   text-transform: uppercase;

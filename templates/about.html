@@ -1,6 +1,65 @@
 {% set current_tab = 'about' %}
 {% extends 'tab.html' %}
 
+{% block css %}
+  <link rel='stylesheet' href='{{ url_for_static("css/about.css") }}'/>
+{% endblock %}
+
 {% block main %}
+  <div class='flex columns align-center font-size1 neoplanta text-align-center bottom-margin1'>
+    <p class='bottom-margin2'>„Православље – новине Српске Патријаршије“ излазе са благословом Његове Светости Патријарха српског Иринеја.</p>
+    <p class='bottom-margin2'>Издаје Информативно­издавачка установа Светог Архијерејског Синода Српске Православне Цркве.</p>
+    <p>Први број „Православља“ изашао је 15. априла 1967. године.</p>
+  </div>
+
+  <div class='flex columns font-size3'>
+    <p class='bold uppercase font-size2 bottom-margin3'>Уређивачки одбор:</p>
+    <p class='bottom-margin4'>Члан Св. Арх. Синода задужен за надзор над радом Информативно­издавачке установе Св. Арх. Синода СПЦ Митрополит загребачко­љубљански др Порфирије</p>
+
+    <p class='bold'>Главни и одговорни уредник</p>
+    <p class='bottom-margin4'>Протођакон др Дамјан С. Божић</p>
+
+    <p class='bold'>Оперативни уредник</p>
+    <p class='bottom-margin4'>Срећко Петровић</p>
+
+    <p class='bold'>Секретар редакције</p>
+    <p class='bottom-margin4'>Снежана Крупниковић</p>
+
+    <p class='bold'>Лектор и коректор</p>
+    <p class='bottom-margin4'>Ана Јокић</p>
+
+    <p class='bold'>Фотограф</p>
+    <p class='bottom-margin4'>Ђакон Драган С. Танасијевић</p>
+  </div>
+
+  <div class='font-size4'>
+    <p class='bold bottom-margin4'>Излази сваког првог и петнаестог у месецу, за јануар и август двоброј.<p>
+
+    <p class='bold'>Телефони:</p>
+    <p><span class='bold align'>Редакција:</span><a href='tel:+381113025116'>+381 11 30–25–116</a></p>
+    <p><span class='bold align'>Маркетинг:</span><a href='tel:+381113025113'>+381 11 30–25–113</a></p>
+    <p><span class='bold align'>e–mail:</span><a href='mailto:pravoslavlje@spc.rs'>pravoslavlje@spc.rs</a> – редакција</p></p>
+    <p class='bottom-margin4'><span class='bold align'>web:</span><a href='http://православље.срб/'>православље.срб</a> ; <a href='http://www.pravoslavlje.rs/'>www.pravoslavlje.rs</a></p>
+
+    <p class='bottom-margin4'>Рукописи и фотографије се не враћају. Текстови достављени редакцији „Православља“ подлежу анонимној рецензији. Текстови и прилози објављени у „Православљу“ представљају ставове аутора.</p>
+
+    <p class='bottom-margin4'>Сва права задржана. Свако прештампавање, копирање, умножавање, објављивање и дистрибуирање целих или делова ових новина или чланака објављених у њима забрањено је и представља повреду ауторског права и кривично дело.</p>
+
+    <p class='bold'>Графичка припрема, слог и прелом:</p>
+    <p>Срећко Петровић</p>
+    <p class='bottom-margin4'><span class='bold'>Штампа:</span> „Политика“ А. Д</p>
+
+    <p><span class='bold'>Дистрибутер</span> „Polydor“ д.о.о.,</p>
+    <p>Ломина 11/3/9, 32300 Горњи Милановац</p>
+    <p class='bottom-margin4'>тел/факс. <a href='tel:032717322'>032/717–322</a>, <a href='tel:0112461138'>011/2461–138</a></p>
+
+    <p>CIP – Каталогизација у публикацији</p>
+    <p>Народна библиотека Србије, Београд</p>
+    <p class='bold'>271.222 (497.11)</p>
+    <p class='bold'>ISSN 0555–0114 = Православље</p>
+    <p class='bold bottom-margin4'>COBISS.SR–ID 16399106</p>
+
+    <p class='bold'>Православље се штампа уз помоћ Управе за сарадњу с Црквама и верским заједницама Владе Републике Србије</p>
+  </div>
 
 {% endblock %}

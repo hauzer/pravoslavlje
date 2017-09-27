@@ -80,25 +80,18 @@ def remove_db_session(exception=None):
 
 
 tabs = {
-    'editorial_board': 'Уредништво',
     'new_issue':       'Нови број',
     'archive':         'Архива',
     'subscription':    'Претплата',
-    'associates':      'Сарадници',
     'about':           'О новинама',
-    'contact':         'Контакт',
+    # 'contact':         'Контакт',
 }
 jinja_vars['tabs'] = tabs
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-
-@app.route('/уредништво')
-def editorial_board():
-    return render_template('editorial_board.html')
+    return new_issue()
 
 
 @app.route('/архива')
@@ -130,11 +123,6 @@ def subscription():
     return render_template('subscription.html')
 
 
-@app.route('/сарадници')
-def associates():
-    return render_template('associates.html')
-
-
 @app.route('/о-новинама')
 def about():
     return render_template('about.html')
@@ -147,15 +135,14 @@ def contact():
 
 @app.route('/број/<number>')
 def issue(number):
-    newest_issue = db.session.query(db.Issue) \
-        .order_by(sql.desc(db.Issue.date)).first()
     g.issue = db.session.query(db.Issue) \
         .filter(db.Issue.number == number).first()
 
-    if g.issue and newest_issue:
+    if g.issue:
+        newest_issue = db.session.query(db.Issue) \
+            .order_by(sql.desc(db.Issue.date)).first()
         if g.issue == newest_issue:
             current_tab = 'new_issue'
-
         return render_template('issue.html', current_tab=current_tab)
     else:
         return abort(404)
