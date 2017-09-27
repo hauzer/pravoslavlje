@@ -17,8 +17,10 @@
     {{ g.issue.month_name }} {{ '{}.'.format(g.issue.date.year) }}
   </p>
 
-  <object class='pdf' type='application/pdf' data='{{ g.issue.pdf_url }}'>
-    <iframe class='pdf' src='{{ g.issue.pdf_url }}'>
+  {% set pdf_page_one_url = '{}#page1'.format(g.issue.pdf_url) %}
+
+  <object class='pdf' type='application/pdf' data='{{ pdf_page_one_url }}'>
+    <iframe class='pdf' src='{{ pdf_page_one_url }}'>
       <p class='info-box'>Ваш претраживач не подржава директно приказивање ПДФова.</p>
     </iframe>
   </object>
