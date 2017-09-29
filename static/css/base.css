@@ -285,6 +285,7 @@ nav {
 
   font-family: 'PF Agora Slab Pro';
   font-style: italic;
+  font-size: 1.085rem;
   white-space: nowrap;
 }
 
@@ -293,12 +294,10 @@ nav .tab, nav.tab:visited {
 }
 
 nav .tab {
-  padding-top: 0.2rem;
-  padding-bottom: 0.1rem;
-  padding-left: 1.3rem;
-  padding-right: 1.3rem;
-
-  font-size: 0.95rem;
+  padding-top: 0.35rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1.7rem;
+  padding-right: 1.7rem;
 }
 
 nav .tab:hover {
