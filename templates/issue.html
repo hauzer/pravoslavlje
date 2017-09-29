@@ -17,7 +17,7 @@
     {{ '{}. {} {}.'.format(g.issue.date.day, g.issue.month_name, g.issue.date.year) }}
   </p>
 
-  {% set pdf_page_one_url = '{}#page1'.format(g.issue.pdf_url) %}
+  {% set pdf_page_one_url = '{}#page=1'.format(g.issue.pdf_url) %}
 
   <object class='pdf' type='application/pdf' data='{{ pdf_page_one_url }}'>
     <iframe class='pdf' src='{{ pdf_page_one_url }}'>
