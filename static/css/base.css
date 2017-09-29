@@ -276,16 +276,13 @@ nav {
   width: 100%;
   min-width: 0;
 
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
-  margin-top: 0.85rem;
-  margin-bottom: 0.85rem;
-
-  background-image: linear-gradient(to right, white, #d5d8ce 20%, #d5d8ce 80%, white);
+  padding-top: 0.05rem;
+  padding-bottom: 0.05rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.35rem;
 
   font-family: 'PF Agora Slab Pro';
   font-style: italic;
-  font-size: 1.085rem;
   white-space: nowrap;
 }
 
@@ -296,8 +293,15 @@ nav .tab, nav.tab:visited {
 nav .tab {
   padding-top: 0.35rem;
   padding-bottom: 0.25rem;
-  padding-left: 1.7rem;
-  padding-right: 1.7rem;
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
+
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+
+  border: 0.15rem solid rgba(97, 126, 84, 0.75);
 }
 
 nav .tab:hover {
@@ -309,7 +313,12 @@ nav .active.tab {
   color: lightgrey;
 }
 
-header > .decor {
+header > .first.decor {
+  height: 0.5rem;
+  width: 30%;
+}
+
+header > .second.decor {
   height: 0.5rem;
   width: 60%;
 }
