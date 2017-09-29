@@ -136,6 +136,10 @@ img {
   -webkit-user-select: none;
 }
 
+strong {
+  font-weight: bold;
+}
+
 .flex {
   display: flex;
 }

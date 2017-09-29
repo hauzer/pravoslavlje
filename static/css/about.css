@@ -2,55 +2,40 @@ main {
   width: 65%;
 }
 
-.bold {
-  font-weight: bold;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.neoplanta {
+.first-text-block {
+  margin-bottom: 1.4rem;
   font-family: 'Neoplanta BG';
-}
-
-.text-align-center {
+  font-size: 1.15rem;
   text-align: center;
 }
 
-.bottom-margin1 {
-  margin-bottom: 1.4rem;
-}
-
-.bottom-margin2 {
+.first-text-block > p:not(:last-child) {
   margin-bottom: 1rem;
 }
 
-.bottom-margin3 {
-  margin-bottom: 0.7rem;
-}
-
-.bottom-margin4 {
-  margin-bottom: 0.5rem;
-}
-
-.font-size1 {
-  font-size: 1.15rem;
-}
-
-.font-size2 {
-  font-size: 1.05rem;
-}
-
-.font-size3 {
+.second-text-block {
   font-size: 1rem;
 }
 
-.font-size4 {
+.second-text-block > div {
+  margin-bottom: 0.5rem;
+}
+
+.second-text-block > div:first-child {
+  margin-bottom: 0.7rem;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+}
+
+.third-text-block {
   font-size: 0.9rem;
 }
 
-.align {
+.third-text-block > div:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.indent {
   display: inline-block;
   min-width: 5.75rem;
 }

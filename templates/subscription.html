@@ -1,6 +1,46 @@
 {% set current_tab = 'subscription' %}
 {% extends 'tab.html' %}
 
-{% block main %}
+{% block css %}
+  <link rel='stylesheet' href='{{ url_for_static("css/subscription.css") }}'/>
+{% endblock %}
 
+{% block main %}
+  <div>
+    <p>Годишња претплата за нашу земљу је 1700 динара, полугодишња 850. Појединачни примерак 90 динара. Претплата за нашу земљу може се уплатити на благајни Српске Патријаршије, Краља Петра 5 или на текући рачун.</p>
+  </div>
+
+  <div>
+    <p><strong>Уплате не слати поштанском упутницом!</strong></p>
+    <p><strong>Не слати девизне чекове!</strong></p>
+  </div>
+
+  <div>
+    <p><strong>Годишња претплата за иностранство:</strong></p>
+    <p>Обична пошиљка је 70 USD, 70 CAD, 75 AUD, 45 EUR, 35GBP;</p>
+    <p>авионска: 90 USD, 90 CAD, 100 AUD, 60 EUR, 45 GBP</p>
+  </div>
+
+  <div>
+    <p><strong>Текући рачун динарски број:</strong></p>
+    <p>145–4721–71 Марфин банка</p>
+    <p>Далматинска 22 Београд</p>
+  </div>
+
+  <div>
+    <p><strong>Текући рачун девизни број:</strong></p>
+    <p>lntermediary Deutsche Bank GmbH,</p>
+    <p>Frankfurt/M (BIC DEUTDEFF)</p>
+    <p>Account with inst: 935–9522–10</p>
+    <p>Marfin bank AD, Beograd (BIC LIKIRSBG)</p>
+    <p>Beneficiary: RS35145007080000135615</p>
+    <p>Informativno Izdavacкa Ustanova Srpske Pravoslavne Crkve, </p>
+    <p>Kralja Petra 5, Beograd</p>
+    <p>Charges: For the account of ordering customer</p>
+  </div>
+
+  <div>
+    <p><strong class='indent'>Телефон:</strong> <a href='tel:+381113025103'>+381 11 30–25–103</a>, <a href='tel:+3813025113'>30–25–113</a></p>
+    <p><strong class='indent'>e–mail:</strong> <a href='mailto:pretplata@spc.rs'>pretplata@spc.rs</a></p>
+  </div>
 {% endblock %}

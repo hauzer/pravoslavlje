@@ -1,0 +1,13 @@
+main {
+  width: 65%;
+  align-items: unset !important;
+}
+
+main > div:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.indent {
+  display: inline-block;
+  min-width: 5rem;
+}
