@@ -1,6 +1,17 @@
 main {
   width: 65%;
-  align-items: unset !important;
+}
+
+@media only screen and (max-width: 700px) {
+  main {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  main {
+    width: 90%;
+  }
 }
 
 main > div:not(:last-child) {

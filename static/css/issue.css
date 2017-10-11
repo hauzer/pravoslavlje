@@ -2,6 +2,14 @@ body.zoomed {
   width: 90%;
 }
 
+body.zoomed .content-wrapper {
+  max-width: 100%;
+}
+
+main {
+  align-items: center;
+}
+
 .title {
   font-family: 'Neoplanta BG';
   font-size: 1.8rem;

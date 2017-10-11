@@ -6,7 +6,7 @@
 <html class='flex rows justify-center'>
 <head>
   <meta charset='utf-8'>
-  {# <link rel='shortcut icon' type='image/x-icon' href='{{ url_for_static("img/favicon.ico") }}'/> #}
+  <link rel='shortcut icon' type='image/x-icon' href='{{ url_for_static("img/favicon.png") }}'/>
 
   <link rel='stylesheet' href='{{ url_for_static("css/base.css") }}'/>
   {% block css %}{% endblock %}
@@ -17,9 +17,9 @@
   <title>{% block title %}{{ set_title() }}{% endblock %}</title>
 </head>
 <body class='flex rows justify-center' ondragstart="return false;" ondrop="return false;">
-  <div id='content-wrapper' class='flex rows'>
+  <div class='content-wrapper flex rows'>
     <div class='decor grey-decor self-align-center'></div>
-    <div id='content' class='flex columns align-center'>
+    <div class='content flex columns align-center'>
       <header class='flex columns align-center'>
         <div class='banner'>
           <a href='{{ url_for("index") }}'>
@@ -42,7 +42,7 @@
         <div class='second decor round-green-decor'></div>
       </header>
 
-      <main class='flex columns align-center'>
+      <main class='flex columns'>
         {% block main %}{% endblock %}
       </main>
 

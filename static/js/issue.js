@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
           if(Date.now() - last_scroll >= 400) {
             document.body.classList.add('zoomed');
-            pdf.classList.add('zoomed');
             setTimeout(function() {
               pdf.scrollIntoView(true);
             }, 400);
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 400);
       } else if(is_zoomed && !is_in_view) {
         document.body.classList.remove('zoomed');
-        pdf.classList.remove('zoomed');
       }
 
       last_scroll = Date.now();
