@@ -226,7 +226,6 @@ body {
   margin-bottom: 0.5rem;
 
   width: 100%;
-  min-width: 0;
   max-width: 1100px;
   transition: max-width 0.3s ease-in-out;
 }
@@ -238,7 +237,7 @@ body {
 }
 
 .content {
-  min-width: 0;
+  width: 100%;
 
   padding-left: 3rem;
   padding-right: 3rem;
