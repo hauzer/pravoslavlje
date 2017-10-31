@@ -11,7 +11,7 @@
 {% set title = 'Број {}'.format(g.issue.number) %}
 {% block title %}{{ set_title(title) }}{% endblock %}
 
-{% block main %}
+{% block content %}
   <p class='title'>{{ title }}</p>
   <p class='subtitle'>
     {{ '{}. {} {}.'.format(g.issue.date.day, g.issue.month_name, g.issue.date.year) }}

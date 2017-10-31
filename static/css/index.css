@@ -1,33 +1,12 @@
-main {
-  width: 65%;
-  align-items: center;
-}
-
-@media only screen and (max-width: 700px) {
-  main {
-    width: 80%;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-  main {
-    width: 90%;
-  }
-}
-
 .first-text-block {
   margin-bottom: 1.4rem;
   font-family: 'Neoplanta BG';
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   text-align: center;
 }
 
 .first-text-block > p:not(:last-child) {
   margin-bottom: 1rem;
-}
-
-.second-text-block {
-  font-size: 1rem;
 }
 
 .second-text-block > div {
@@ -36,7 +15,6 @@ main {
 
 .second-text-block > div:first-child {
   margin-bottom: 0.7rem;
-  font-size: 1.05rem;
   text-transform: uppercase;
 }
 
@@ -50,5 +28,11 @@ main {
 
 .indent {
   display: inline-block;
-  min-width: 5.75rem;
+  min-width: 7rem;
 }
+
+@media only screen and (max-width: 500px) {
+ .indent {
+   display: block;
+   min-width: 0;
+ }

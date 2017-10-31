@@ -9,7 +9,7 @@
   <script src='{{ url_for_static("js/archive.js") }}'></script>
 {% endblock %}
 
-{% block main %}
+{% block content %}
   <p class='info-box'>
     Архива је у изради. Претходни бројеви ће бити постепено додавани.
   </p>
@@ -18,7 +18,7 @@
     <div class='{% if loop.first %}
                   displayed
                 {% endif %}
-                year flex columns align-center unselectable'>
+                year'>
       <span class='rolldown-button'>{{ year }}</span>
       <div class='decor blocky-green-decor'></div>
       <div class='months rolldown-container flex columns align-center'>
@@ -28,14 +28,14 @@
                         displayed
                         {% if _.update({"first_month": false}) %}{% endif %}
                       {% endif %}
-                      month flex columns align-center'>
+                      month'>
             <span class='rolldown-button'>{{ month }}</span>
             <div class='decor blocky-green-decor'></div>
-            <div class='issues rolldown-container flex rows align-center'>
+            <div class='issues rolldown-container'>
               {% for issue in issues %}
                 <div class='issue'>
-                  <a class='flex columns align-center' href='{{ issue.url }}'>
-                    <span class='flex columns align-center'>{{ issue.number }}</span>
+                  <a href='{{ issue.url }}'>
+                    <span>{{ issue.number }}</span>
                     <img src='{{ issue.cover_url }}'>
                   </a>
                 </div>

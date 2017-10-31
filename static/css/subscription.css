@@ -1,24 +1,18 @@
-main {
-  width: 65%;
+main section {
+  align-items: left;
 }
 
-@media only screen and (max-width: 700px) {
-  main {
-    width: 80%;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-  main {
-    width: 90%;
-  }
-}
-
-main > div:not(:last-child) {
+main section > div:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
 .indent {
   display: inline-block;
-  min-width: 5rem;
+  min-width: 6rem;
 }
+
+@media only screen and (max-width: 500px) {
+  .indent {
+    display: block;
+    min-width: 0;
+  }

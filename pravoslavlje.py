@@ -64,7 +64,7 @@ def issue_cover_url(self):
 app = Flask(__name__, static_path='/files')
 app.config.from_object(__name__)
 app.config.update({
-    'SECRET_KEY':       '!!!!!!! TEST KEY CHANGE ME !!!!!!!!',
+    'SECRET_KEY':       '!!!!!!! DEV KEY CHANGE ME !!!!!!!!',
     'SESSION_TYPE':     'filesystem',
     'SESSION_FILE_DIR': 'sessions'
 })
@@ -80,6 +80,7 @@ def remove_db_session(exception=None):
 
 
 tabs = {
+    'index':           'О новинама',
     'new_issue':       'Нови број',
     'archive':         'Архива',
     'subscription':    'Претплата',

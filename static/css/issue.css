@@ -1,13 +1,5 @@
-body.zoomed {
-  width: 90%;
-}
-
-body.zoomed .content-wrapper {
+body.zoomed .content {
   max-width: 100%;
-}
-
-main {
-  align-items: center;
 }
 
 .title {
