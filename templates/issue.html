@@ -19,11 +19,20 @@
 
   {% set pdf_page_one_url = '{}#page=1'.format(g.issue.pdf_url) %}
 
-  <object class='pdf' type='application/pdf' data='{{ pdf_page_one_url }}'>
-    <iframe class='pdf' src='{{ pdf_page_one_url }}'>
-      <p class='info-box'>Ваш претраживач не подржава директно приказивање ПДФова.</p>
-    </iframe>
-  </object>
+  <div class='preview'>
+    <div class='info-box-container'>
+      <p class='info-box'>Дошло је до грешке при учитавању броја. Могуће је да ваш претраживач не подржава директно приказивање ПДФова. Ако преузимање није аутоматски започето, покрените га ручно.</p>
+    </div>
 
-  <a class='download' href='{{ g.issue.pdf_url }}' download>Преузмите ПДФ</a>
+    <object class='pdf' type='application/pdf' data='{{ pdf_page_one_url }}'></object>
+  </div>
+
+  <a id='читање' href='##'>
+    <object class='pdf' type='application/pdf' data='{{ pdf_page_one_url }}'></object>
+  </a>
+
+  <div class='buttons'>
+    <a class='button' href='#читање' download>Читајте</a>
+    <a class='button' href='{{ g.issue.pdf_url }}' download>Преузмите</a>
+  </div>
 {% endblock %}

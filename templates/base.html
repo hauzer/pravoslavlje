@@ -26,6 +26,10 @@
       <img src='{{ url_for_static("img/banner.png") }}'/>
     </a>
 
+    <a class='small-banner' href='{{ url_for("index") }}'>
+      <img src='{{ url_for_static("img/logo.png") }}'/>
+    </a>
+
     <main>
       <section>
         {% block content %}{% endblock %}
