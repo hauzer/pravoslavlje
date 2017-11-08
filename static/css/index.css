@@ -1,7 +1,15 @@
 .first-text-block {
   margin-bottom: 1.4rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+
+  border: 0.30rem solid rgba(231, 194, 88, 0.50);
+
   font-family: 'Neoplanta BG';
   font-size: 1.3rem;
+
   text-align: center;
 }
 
