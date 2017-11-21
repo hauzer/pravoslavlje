@@ -52,7 +52,7 @@ main section .preview .pdf {
   height: 80vh;
 }
 
-#читање {
+#листање {
   display: none;
 
   width: 100vw;
@@ -66,14 +66,14 @@ main section .preview .pdf {
   background-color: rgba(0, 0, 0, 0.40);
 }
 
-#читање:target {
+#листање:target {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-#читање .pdf {
+#листање .pdf {
   height: 100%;
   width: 90%;
 }
