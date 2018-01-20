@@ -1,2 +1,6 @@
+*.code-workspace
 __pycache__
+messages.pot
 sessions
+static/covers
+translations

@@ -1,140 +1,201 @@
+from bidict import bidict
+from functools import wraps
 from itertools import groupby
+import os
 
-import flask
-from flask import Flask, abort, g, redirect, request, session, url_for
+import sqlite3
+
+from flask import Flask, abort, g, redirect, render_template, request, session, url_for
+from flask_babelex import lazy_gettext as _, Babel, Locale
 from flask_session import Session
 from flask_profile import Profiler
 
-import db
-import sqlalchemy as sql
+
+def get_db():
+    if not hasattr(g, 'db'):
+        g.db = sqlite3.connect(
+            'db.sqlite3',
+            detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
+        )
+        g.db.row_factory = sqlite3.Row
+    return g.db
 
 
-def combine_dicts(*dicts):
-    keys_values = []
-    for dct in dicts:
-        if dct:
-            keys_values.extend(list(dct.items()))
-    return dict(keys_values)
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    results = getattr(cur, {True: 'fetchone', False: 'fetchall'}[one])()
+    cur.close()
+
+    if results is not None:
+        return results[0] if one else results
 
 
-jinja_vars = {}
+def generate_db_issues_from_pdfs(year, month, day):
+    with app.app_context():
+        query_db('DELETE FROM issues')
+        for pdf in sorted(os.listdir('static/pdfs')):
+            number = pdf.split('.')[0]
+            date = '{}-{:02}-{:02}'.format(year, month, day)
+            query_db('INSERT INTO issues (number, date) VALUES (?, ?)', (number, date))
+
+            if day == 15 and month == 12:
+                year += 1
+
+            if month == 1 or month == 8:
+                day = 1
+                month += 1
+            else:
+                if day == 15:
+                    if month == 12:
+                        month = 1
+                    else:
+                        month += 1
+
+                if day == 1:
+                    day = 15
+                else:
+                    day = 1
+
+        get_db().commit()
 
 
-def add_as_jinja_var(func):
-    jinja_vars[func.__name__] = func
-    return func
+def init_db():
+    with app.app_context():
+        db = get_db()
+        schema = open('db.schema', 'r')
+        cur = db.cursor()
+        cur.executescript(schema.read())
+        schema.close()
+        cur.close()
+        db.commit()
 
 
-def render_template(*args, **kwargs):
-    return flask.render_template(*args, **combine_dicts(jinja_vars, kwargs))
-
-
-@add_as_jinja_var
-def url_for_static(filename, *args, **kwargs):
-    return url_for('static', *args, filename=filename, **kwargs)
-
-
-def attach_method(obj, attr):
-    def decorator(func):
-        setattr(obj, attr, func)
-        return func
-
-    return decorator
-
-
-@attach_method(db.Issue, 'url')
-@property
-def issue_url(self):
-    return url_for('issue', number=self.number)
-
-
-@attach_method(db.Issue, 'pdf_url')
-@property
-def issue_pdf_url(self):
-    return url_for_static(self.pdf_path)
-
-
-@attach_method(db.Issue, 'cover_url')
-@property
-def issue_cover_url(self):
-    return url_for_static(self.cover_path)
-
-
-# FIXME: files 404ing in the root static directory
-app = Flask(__name__, static_path='/files')
+app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.update({
-    'SECRET_KEY':       '!!!!!!! DEV KEY CHANGE ME !!!!!!!!',
     'SESSION_TYPE':     'filesystem',
     'SESSION_FILE_DIR': 'sessions'
 })
 app.config.from_envvar('PRAVOSLAVLJE_SETTINGS', silent=True)
 
+
+@app.teardown_appcontext
+def close_db(exception):
+    if hasattr(g, 'db'):
+        g.db.close()
+
+
+@app.template_global()
+def url_for_static(filename, *args, **kwargs):
+    return url_for('static', *args, filename=filename, **kwargs)
+
+
 Profiler(app)
 Session(app)
 
+babel = Babel(app, 'sr_Cyrl_RS')
 
-@app.teardown_appcontext
-def remove_db_session(exception=None):
-    db.session.remove()
-
-
-tabs = {
-    'index':           'О новинама',
-    'new_issue':       'Нови број',
-    'archive':         'Архива',
-    'subscription':    'Претплата',
-}
-jinja_vars['tabs'] = tabs
+locale_prefixes = bidict({
+    Locale('sr', territory='RS', script='Latn'): 'lat',
+})
 
 
-@app.route('/')
+@app.url_defaults
+def add_language_code(endpoint, values):
+    if app.url_map.is_endpoint_expecting(endpoint, 'locale_prefix') and \
+            g.locale in locale_prefixes:
+        values['locale_prefix'] = locale_prefixes[g.locale]
+
+
+@app.url_value_preprocessor
+def set_locale_from_prefix(endpoint, values):
+    if values:
+        locale_prefix = values.pop('locale_prefix', None)
+        if locale_prefix:
+            if locale_prefix in locale_prefixes.inv:
+                g.locale = locale_prefixes.inv[locale_prefix]
+            return
+
+    g.locale = babel.default_locale
+
+
+@babel.localeselector
+def babel_locale_selector():
+    return g.locale
+
+
+def localized_route(route, *args, **kwargs):
+    def decorator(func):
+        @app.route(route, *args, **kwargs)
+        @app.route('/<locale_prefix>' + route, *args, **kwargs)
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if 'locale' not in g:
+                return abort(404)
+            else:
+                return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
+@app.before_request
+def set_endpoint():
+    g.endpoint = request.endpoint
+
+
+main_menu_items = {}
+
+
+def main_menu_item(label):
+    def decorator(func):
+        main_menu_items[func.__name__] = label
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            g.is_on_main_menu_item = True
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
+@localized_route('/')
+@main_menu_item(_('Почетна'))
 def index():
     return render_template('index.html')
 
 
-@app.route('/архива')
+@localized_route('/arhiva')
+@main_menu_item(_('Архива'))
 def archive():
-    g.issues = []
-    issues = db.session.query(db.Issue).order_by(sql.desc(db.Issue.date))
-    for year, year_issues in groupby(issues, lambda i: i.date.year):
-        g.issues.append((year, []))
-        for month, month_issues in \
-                groupby(year_issues, lambda i: i.date.month):
-            list_month_issues = list(month_issues)
-            g.issues[-1][1].append((
-                list_month_issues[0].month_name,
-                list_month_issues
-            ))
+    issues = query_db('SELECT * FROM issues ORDER BY date DESC')
+    g.issue_per_year = []
+    for year, year_issues in groupby(issues, lambda i: i['date'].year):
+        g.issue_per_year.append((year, next(year_issues)))
 
     return render_template('archive.html')
 
 
-@app.route('/нови-број')
-def new_issue():
-    issue = db.session.query(db.Issue) \
-        .order_by(sql.desc(db.Issue.date)).first()
-    return redirect(url_for('issue', number=issue.number))
+@localized_route('/pretraga')
+@main_menu_item(_('Претрага'))
+def search():
+    return render_template('search.html')
 
 
-@app.route('/претплата')
+@localized_route('/pretplata')
+@main_menu_item(_('Претплата'))
 def subscription():
     return render_template('subscription.html')
 
 
-@app.route('/број/<number>')
-def issue(number):
-    g.issue = db.session.query(db.Issue) \
-        .filter(db.Issue.number == number).first()
-
-    if g.issue:
-        newest_issue = db.session.query(db.Issue) \
-            .order_by(sql.desc(db.Issue.date)).first()
-        if g.issue == newest_issue:
-            current_tab = 'new_issue'
-        else:
-            current_tab = None
-
-        return render_template('issue.html', current_tab=current_tab)
+@localized_route('/godina/<year>')
+def year(year):
+    from_ = '{}-01-01'.format(year)
+    to = '{}-31-12'.format(year)
+    g.issues = query_db('SELECT * FROM issues WHERE date BETWEEN ? AND ? ORDER BY date DESC', (from_, to))
+    if g.issues:
+        return render_template('year.html')
     else:
         return abort(404)
+
+
+app.add_template_global(main_menu_items, 'main_menu_items')

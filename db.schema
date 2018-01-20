@@ -1,0 +1,66 @@
+CREATE TABLE issues(
+  id      INTEGER PRIMARY KEY UNIQUE NOT NULL,
+  number  TEXT UNIQUE NOT NULL,
+  date    DATE UNIQUE NOT NULL
+);
+
+CREATE TABLE authors(
+  id      INTEGER PRIMARY KEY UNIQUE NOT NULL,
+  name    TEXT NOT NULL
+);
+
+CREATE TABLE articles(
+  id      INTEGER PRIMARY KEY UNIQUE NOT NULL,
+  title   TEXT NOT NULL,
+  text    TEXT NOT NULL,
+  issue   INTEGER NOT NULL,
+
+  FOREIGN KEY(issue) REFERENCES issues(id)
+);
+
+CREATE TABLE article_authors(
+  article INTEGER NOT NULL,
+  author  INTEGER NOT NULL,
+
+  FOREIGN KEY(article ) REFERENCES articles (id)
+  FOREIGN KEY(author  ) REFERENCES authors  (id)
+);
+
+CREATE VIRTUAL TABLE articles_index USING fts5(
+  title,
+  text,
+  content='articles',
+  content_rowid='id'
+);
+
+CREATE TRIGGER articles_after_insert AFTER INSERT ON articles BEGIN
+  INSERT INTO articles_index(rowid, title, text) VALUES (new.id, new.title, new.text);
+END;
+
+CREATE TRIGGER articles_after_delete AFTER DELETE ON articles BEGIN
+  INSERT INTO articles_index(articles_index, rowid, title, text) VALUES('delete', old.id, old.title, old.text);
+END;
+
+CREATE TRIGGER articles_after_update AFTER UPDATE ON articles BEGIN
+  INSERT INTO articles_index(articles_index, rowid, title, text) VALUES('delete', old.id, old.title, old.text);
+  INSERT INTO articles_index(rowid, title, text) VALUES (new.id, new.title, new.text);
+END;
+
+CREATE VIRTUAL TABLE authors_index USING fts5(
+  name,
+  content='authors',
+  content_rowid='id'
+);
+
+CREATE TRIGGER authors_after_insert AFTER INSERT ON authors BEGIN
+  INSERT INTO authors_index(rowid, name) VALUES (new.id, new.name);
+END;
+
+CREATE TRIGGER authors_after_delete AFTER DELETE ON authors BEGIN
+  INSERT INTO authors_index(authors_index, rowid, name) VALUES('delete', old.id, old.name);
+END;
+
+CREATE TRIGGER authors_after_update AFTER UPDATE ON authors BEGIN
+  INSERT INTO authors_index(authors_index, rowid, name) VALUES('delete', old.id, old.name);
+  INSERT INTO authors_index(rowid, name) VALUES (new.id, new.name);
+END;

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+  {{ self_stylesheet() }}
+{% endblock %}
+
+{% block content %}
+  <div class='main-content-title'>{{ '{} {}'.format(_('Година'), g.issues[0]['date'].year) }}</div>
+
+  <div class='issues'>
+    {% for issue in g.issues %}
+      <a href='{{ url_for_static("pdfs/{}.pdf".format(issue.number)) }}'>
+        <div class='issue'>
+          <img class='issue-cover' src='{{ url_for_static("covers/{}-small.png".format(issue["number"])) }}'>
+          <p class='issue-label'>
+            {{ '{} {}, {} {}.'.format(
+                  _('Број'),
+                  issue['number'],
+                  g.locale.months['format']['wide'][issue['date'].month],
+                  issue['date'].day)
+            }}
+          </p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class='flex-dummy-issue'></div>
+{% endblock %}

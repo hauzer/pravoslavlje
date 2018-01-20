@@ -1,33 +1,8 @@
-.blocky-green-decor {
-  background-image: url('../img/blocky-green-decor.png');
-}
-
-.rolldown-button {
-  width: 100%;
-
-  transition: color 0.25s;
-  background-color: #617e54;
-
-  font-family: 'PF Agora Slab Pro';
-  font-weight: bold;
-
-  text-align: center;
-
-  cursor: pointer;
-}
-
-.rolldown-button:hover {
-  color: lightgrey;
-  transition: color 0.15s;
-}
-
-.rolldown-container {
-  overflow: hidden;
-  height: 0;
-}
-
-.displayed > .rolldown-container {
-  height: 100%;
+.main-content {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-around;
 }
 
 .year {
@@ -35,102 +10,19 @@
   flex-direction: column;
   align-items: center;
 
-  width: 100%;
+  width: 250px;
+  margin: 6px;
 
-  -webkit-user-select: none;
+  background-color: rgba(67, 39, 45, 0.1);
+  border: 1px solid rgba(67, 39, 45, 0.25);
 }
 
-.year > .rolldown-button {
-  padding-top: 0.5rem;
-  font-size: 2rem;
+.flex-dummy-year {
+  width: 250px;
 }
 
-.year > .decor {
-  width: 100%;
-  min-height: 0.75rem;
-}
-
-.months {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 80%;
-}
-
-.month {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 100%;
-}
-
-.month > .rolldown-button {
-  width: 100%;
-
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-}
-
-.month > .decor {
-  width: 100%;
-  min-height: 0.25rem;
-}
-
-.issues {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  transition: height 0.5s ease-in-out;
-}
-
-@media only screen and (max-width: 650px) {
-  .issues {
-    flex-direction: column;
-  }
-}
-
-.issue {
-  border: 1px solid rgba(0, 0, 0, 0.20);
-}
-
-.issue a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.issue span {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 100%;
-
-  transition: color 0.25s;
-  transition: background-color 0.25s;
-
-  border-bottom: 1px solid rgba(0, 0, 0, 0.20);
-
-  font-family: 'Fedra Sans Pro';
-  font-size: 1.1rem;
-}
-
-.issue:hover span {
-  color: #E4E4E4;
-  transition: color 0.15s;
-  background-color: #C6776C;
-  transition: background-color 0.15s;
-}
-
-.issue img {
-  max-height: 60vh;
-}
-
-@media only screen and (max-width: 650px) {
-  .issue img {
-    max-height: 80vh;
-  }
+.year-label {
+  margin: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
 }

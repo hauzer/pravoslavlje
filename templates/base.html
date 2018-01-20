@@ -1,5 +1,16 @@
+{% set title = _('Православље') %}
+{% set subtitle = _('Новине српске патријаршије') %}
+
+{% macro stylesheet(name) -%}
+  <link href='{{ url_for_static("css/{}.css".format(name)) }}' rel="stylesheet">
+{%- endmacro %}
+
+{% macro self_stylesheet() %}
+  {{ stylesheet(self._TemplateReference__context.name.split('.')[0]) }}
+{% endmacro %}
+
 {% macro set_title(value=None) -%}
-    {{ '{}{}'.format('' if value == None else value + ' — ', 'Православље – новине српске патријаршије') }}
+    {{ '{}{}'.format('' if value == None else value + ' — ', '{} – {}'.format(title, subtitle)) }}
 {%- endmacro %}
 
 <!DOCTYPE html>
@@ -8,48 +19,52 @@
 <head>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-
   <link rel='shortcut icon' type='image/x-icon' href='{{ url_for_static("img/favicon.png") }}'/>
+  
+  {{ stylesheet('normalize') }}
+  {{ stylesheet('base') }}
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|News+Cycle|Vollkorn" rel="stylesheet">
+  {% block stylesheets %}{% endblock %}
 
-  <link rel='stylesheet' href='{{ url_for_static("css/base.css") }}'/>
-  {% block css %}{% endblock %}
-
-  <script src='{{ url_for_static("js/base.js") }}'></script>
-  {% block js %}{% endblock %}
-
-  <title>{% block title %}{{ set_title() }}{% endblock %}</title>
+  <title>
+  {% block title %}
+    {% if g.is_on_main_menu_item %}
+      {{ set_title(main_menu_items[g.endpoint]) }}
+    {% else %}
+      {{ set_title() }}
+    {% endif %}
+  {% endblock %}
+  </title>
 </head>
 
 <body ondragstart='return false;' ondrop='return false;'>
-  <div class='content'>
-    <a class='banner' href='{{ url_for("index") }}'>
-      <img src='{{ url_for_static("img/banner.png") }}'/>
-    </a>
+  <div class='body-header'></div>
 
-    <a class='small-banner' href='{{ url_for("index") }}'>
-      <img src='{{ url_for_static("img/logo.png") }}'/>
-    </a>
+  <div class='body-content'>
+    <header class='main-header'>
+      <h1 class='main-header-title'><a href='{{ url_for("index") }}'>{{ title }}</a></h1>
+      <h2 class='main-header-subtitle'>{{ subtitle }}</h2>
+    </header>
 
-    <main>
-      <section>
+    <main class='main-content-wrapper'>
+      <section class='main-content'>
         {% block content %}{% endblock %}
       </section>
-      
-      <nav>
-        <div class='hidden links'>
-          {% for tab, tab_label in tabs.items() %}
-            {% if tab == current_tab %}
-              <span>➢ {{ tab_label }}</span>
-            {% else %}
-              <span><span style='opacity: 0;'>➢</span> <a href='{{ url_for(tab) }}'>{{ tab_label }}</a></span>
-            {% endif %}
-          {% endfor %}
-        </div>
 
-        <img class='hidden right-arrow button' src='{{ url_for_static("img/nav-right-arrow.svg") }}'>
-        <img class='left-arrow button' src='{{ url_for_static("img/nav-left-arrow.svg") }}'>
+      <nav class='main-menu'>
+        {% for endpoint, label in main_menu_items.items() %}
+          {% if endpoint == g.endpoint %}
+            <span class='main-menu-item current-main-menu-item'>{{ label }}</span>
+          {% else %}
+            <span class='main-menu-item'><a href='{{ url_for(endpoint) }}'>{{ label }}</a></span>
+          {% endif %}
+        {% endfor %}
       </nav>
     </main>
+
+    <footer>
+      
+    </footer>
   </div>
 </body>
 

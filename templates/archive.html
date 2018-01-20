@@ -1,49 +1,18 @@
-{% set current_tab = 'archive' %}
-{% extends 'tab.html' %}
+{% extends 'base.html' %}
 
-{% block css %}
-  <link rel='stylesheet' href='{{ url_for_static("css/archive.css") }}'/>
-{% endblock %}
-
-{% block js %}
-  <script src='{{ url_for_static("js/archive.js") }}'></script>
+{% block stylesheets %}
+  {{ self_stylesheet() }}
 {% endblock %}
 
 {% block content %}
-  <p class='info-box'>
-    Архива је у изради. Претходни бројеви ће бити постепено додавани.
-  </p>
-
-  {% for year, months in g.issues %}
-    <div class='{% if loop.first %}
-                  displayed
-                {% endif %}
-                year'>
-      <span class='rolldown-button'>{{ year }}</span>
-      <div class='decor blocky-green-decor'></div>
-      <div class='months rolldown-container flex columns align-center'>
-        {% set _ = {'first_month': true} %}
-        {% for month, issues in months %}
-          <div class='{% if _.first_month %}
-                        displayed
-                        {% if _.update({"first_month": false}) %}{% endif %}
-                      {% endif %}
-                      month'>
-            <span class='rolldown-button'>{{ month }}</span>
-            <div class='decor blocky-green-decor'></div>
-            <div class='issues rolldown-container'>
-              {% for issue in issues %}
-                <div class='issue'>
-                  <a href='{{ issue.url }}'>
-                    <span>{{ issue.number }}</span>
-                    <img src='{{ issue.cover_url }}'>
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        {% endfor %}
+  {% for year, issue in g.issue_per_year %}
+    <a href='{{ url_for("year", year=year) }}'>
+      <div class='year'>
+        <img class='year-cover' src='{{ url_for_static("covers/{}-small.png".format(issue["number"])) }}'>
+        <p class='year-label'>{{ '{} {}'.format(_('Година'), year) }}</p>
       </div>
-    </div>
+    </a>
   {% endfor %}
+
+  <div class='flex-dummy-year'></div>
 {% endblock %}
