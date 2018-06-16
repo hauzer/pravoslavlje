@@ -23,7 +23,12 @@
 }
 
 .issue-label {
-  margin: 3px;
+  display: flex;
+  flex-direction: column;
+
+  margin: 5px;
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
+
+  text-align: center;
 }

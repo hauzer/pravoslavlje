@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
+  <form method='POST' action='{{ url_for(g.endpoint) }}'>
+    {{ form.csrf_token }}
+    <div>{{ form.name.label }}</div> <div>{{ form.name(size=40) }}</div>
+    <div>{{ form.email.label }}</div> <div>{{ form.email(size=40) }}</div>
+    <div>{{ form.message.label }}</div> <div>{{ form.message(size=1000) }}</div>
+    <input type='submit' value='{{ _("Пошаљите") }}'>
+  </form>
 {% endblock %}

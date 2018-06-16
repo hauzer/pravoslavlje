@@ -1,4 +1,5 @@
 *.code-workspace
+*.sqlite3
 __pycache__
 messages.pot
 sessions

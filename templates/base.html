@@ -1,5 +1,5 @@
-{% set title = _('Православље') %}
-{% set subtitle = _('Новине српске патријаршије') %}
+{% set base_title = _('Православље') %}
+{% set base_subtitle = _('Новине српске патријаршије') %}
 
 {% macro stylesheet(name) -%}
   <link href='{{ url_for_static("css/{}.css".format(name)) }}' rel="stylesheet">
@@ -10,7 +10,7 @@
 {% endmacro %}
 
 {% macro set_title(value=None) -%}
-    {{ '{}{}'.format('' if value == None else value + ' — ', '{} – {}'.format(title, subtitle)) }}
+    {{ '{}{}'.format('' if value == None else value + ' — ', '{} – {}'.format(base_title, base_subtitle)) }}
 {%- endmacro %}
 
 <!DOCTYPE html>
@@ -25,6 +25,8 @@
   {{ stylesheet('base') }}
   <link href="https://fonts.googleapis.com/css?family=Montserrat|News+Cycle|Vollkorn" rel="stylesheet">
   {% block stylesheets %}{% endblock %}
+
+  {% block scripts %}{% endblock %}
 
   <title>
   {% block title %}
@@ -42,8 +44,8 @@
 
   <div class='body-content'>
     <header class='main-header'>
-      <h1 class='main-header-title'><a href='{{ url_for("index") }}'>{{ title }}</a></h1>
-      <h2 class='main-header-subtitle'>{{ subtitle }}</h2>
+      <h1 class='main-header-title'><a href='{{ url_for("index") }}'>{{ base_title }}</a></h1>
+      <h2 class='main-header-subtitle'>{{ base_subtitle }}</h2>
     </header>
 
     <main class='main-content-wrapper'>
